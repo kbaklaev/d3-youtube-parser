@@ -12,7 +12,7 @@ function App() {
     setError(false);
     setLoading(true);
     await axios
-      .get(`/api/d3/?domain=${inputState}`)
+      .get(`/d3-youtube-parser/api/d3/?domain=${inputState}`)
       .then((data) => setPosts(data.data))
       .catch((err) => {
         setError(true);
