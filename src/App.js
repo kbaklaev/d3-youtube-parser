@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom'
-import { save } from 'save-file'
+import { saveAs } from 'file-saver'
 
 function App() {
   const [inputState, setInputState] = useState("");
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const request = async () => {
-    setError(false)
-    setLoading(true)
+    setError(false);
+    setLoading(true);
     await axios
       .get(`/api/d3/?domain=${inputState}`)
       .then((data) => setPosts(data.data))
       .catch((err) => {
-        setError(true)
-        setLoading(false)
+        setError(true);
+        setLoading(false);
         throw err;
       });
-    setLoading(false)
+    setLoading(false);
   };
 
-  const saveFile = async () => {
-    const postsToFile = () => {
-      return posts.filter(post => post.data.link).map(post => `${post.title} / ${post.data.link.url}`)
-    }
-    console.log(JSON.stringify(postsToFile()))
-    await save(JSON.stringify(postsToFile()), 'posts.txt')
-  }
+  const saveFile = () => {
+    const postsToFile = posts
+        .filter((post) => post.data.link)
+        .map((post) => `${post.title} / ${post.data.link.url}`)
+    const blob = new Blob([postsToFile.join('\n')], {type: "text/plain;charset=utf-8"})
+    console.log(blob);
+    saveAs(blob, 'posts.txt')
+  };
 
   return (
     <div>
@@ -42,11 +42,14 @@ function App() {
       <button type="button" onClick={() => request()}>
         YARRR!!!
       </button>
-      <button type="button" onClick={() => saveFile()}>Save File</button>
+      {posts.length !== 0 && (
+        <button type="button" onClick={() => saveFile()}>
+          Save File
+      </button>
+      )}
       <div>
-        {posts.length > 50 && (<Link to='/page/2'>Next Page</Link>)}
-        {loading && (<div>Loading...</div>)}
-        {error && (<div>Error. Try again latter please.</div>)}
+        {loading && <div>Loading...</div>}
+        {error && <div>Error. Try again latter please.</div>}
       </div>
       {posts.length !== 0 && (
         <table>
