@@ -8,7 +8,7 @@ let posts = []
 let requestComplited = false
 let page = 1
 
-app.get('/api', (_, res) => {
+app.get('/api/', (_, res) => {
   res.send('Hello world!')
 })
 
