@@ -5,6 +5,8 @@ import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router'
 import { createBrowserHistory  } from 'history'
 
+import './app.css'
+
 const customHistory = createBrowserHistory()
 
 ReactDOM.render(
