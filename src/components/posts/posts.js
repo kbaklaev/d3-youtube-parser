@@ -2,7 +2,7 @@ import React from "react";
 
 const Posts = ({ posts }) => {
   return (
-    <div className="w-full h-auto overflow-y-scroll">
+    <div className="w-auto h-auto overflow-y-auto overflow-x-hidden px-2">
       {posts.length !== 0 && (
         <table className="table-auto w-full">
           <thead>
@@ -19,7 +19,7 @@ const Posts = ({ posts }) => {
                   <tr key={post.id}>
                     <td className="border px-4 py-2">{index + 1}</td>
                     <td className="border px-4 py-2">{post.data.title}</td>
-                    <td className="border px-4 py-2">
+                    <td className="border px-4 py-2 text-center">
                       <a
                         href={post.data.link.url}
                         target="_blank"

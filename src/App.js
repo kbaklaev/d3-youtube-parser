@@ -60,7 +60,7 @@ function App() {
       <div className="col-start-1 col-end-6 xl:col-start-2 xl:col-end-5 p-4 flex flex-col overflow-hidden">
         <header className="flex p-1 sm:p-2 mb-2 h-18 bg-gray-400 rounded">
           <input
-            className="mx-0 sm:mx-4 appearance-none border-2 border-gray-500 rounded py-2 px-4 text-gray-800 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500 w-4/6 sm:w-6/6"
+            className="mx-0 sm:mx-4 appearance-none border-2 border-gray-500 rounded py-2 px-4 text-gray-800 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500"
             type="text"
             placeholder="enter a domain name"
             value={inputState}
